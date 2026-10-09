@@ -3,6 +3,22 @@ using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
+class Goat {
+private:
+    int age;
+    string name;
+    string color;
+    string names[15] = {"Billy", "Nanny", "Gruff", "Baa", "Capra", "Horny", "Fuzzy", "Woolly", "Goaty", "Kiddo", "Buck", "Doe", "Chèvre", "Bleat", "Ruminant"};
+    string colors[15] = {"White", "Black", "Brown", "Gray", "Spotted", "Golden", "Cream", "Tan", "Chestnut", "Silver", "Red", "Blue", "Piebald", "Dappled", "Brindle"};
+public:
+    Goat() {
+        age = rand() % 20 + 1; // Random age between 1 and 20
+        name = names[rand() % 15]; // Random name from the list
+        color = colors[rand() % 15]; // Random color from the list
+    }
+};
+
+
 class DoublyLinkedList {
 private:
     struct Node {
