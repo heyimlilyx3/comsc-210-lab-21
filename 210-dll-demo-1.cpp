@@ -125,9 +125,14 @@ public:
 
     void print() {
         Node* current = head;
-        if (!current) return;
+        if (!current){
+            cout << "List is empty." << endl;
+            return;
+        }
         while (current) {
-            cout << current->data.getName() << " ";
+            cout << current->data.getName() << " (";
+            cout << current->data.getColor() << ", ";
+            cout << current->data.getAge() << ") ";
             current = current->next;
         }
         cout << endl;
@@ -135,9 +140,14 @@ public:
 
     void print_reverse() {
         Node* current = tail;
-        if (!current) return;
+        if (!current) {
+            cout << "List is empty." << endl;
+            return;
+        }
         while (current) {
-            cout << current->data.getName() << " ";
+            cout << current->data.getName() << " (";
+            cout << current->data.getColor() << ", ";
+            cout << current->data.getAge() << ") ";
             current = current->prev;
         }
         cout << endl;
@@ -155,6 +165,7 @@ public:
 // Driver program
 int main() {
     DoublyLinkedList list;
+    srand(time(0)); 
     int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
 
     for (int i = 0; i < size; ++i)
