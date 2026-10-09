@@ -8,7 +8,7 @@ private:
     int age;
     string name;
     string color;
-    string names[15] = {"Billy", "Nanny", "Gruff", "Baa", "Capra", "Horny", "Fuzzy", "Woolly", "Goaty", "Kiddo", "Buck", "Doe", "Chèvre", "Bleat", "Ruminant"};
+    string names[15] = {"Billy", "Nanny", "Gruff", "Baa", "Capra", "Horny", "Fuzzy", "Woolly", "Goaty", "Kiddo", "Buck", "Doe", "Chevre", "Bleat", "Ruminant"};
     string colors[15] = {"White", "Black", "Brown", "Gray", "Spotted", "Golden", "Cream", "Tan", "Chestnut", "Silver", "Red", "Blue", "Piebald", "Dappled", "Brindle"};
 public:
     Goat() {
@@ -132,7 +132,7 @@ public:
         while (current) {
             cout << current->data.getName() << " (";
             cout << current->data.getColor() << ", ";
-            cout << current->data.getAge() << ") ";
+            cout << current->data.getAge() << ") " << endl;
             current = current->next;
         }
         cout << endl;
@@ -147,7 +147,7 @@ public:
         while (current) {
             cout << current->data.getName() << " (";
             cout << current->data.getColor() << ", ";
-            cout << current->data.getAge() << ") ";
+            cout << current->data.getAge() << ") " << endl;
             current = current->prev;
         }
         cout << endl;
@@ -169,16 +169,16 @@ int main() {
     int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
 
     for (int i = 0; i < size; ++i)
-        list.push_back(Goat(rand() % 20 + 1, "Goat" + to_string(i)));
-    cout << "List forward: ";
+        list.push_back(Goat());
+    cout << "List forward: " << endl;
     list.print();
 
-    cout << "List backward: ";
+    cout << "List backward: " << endl;
     list.print_reverse();
 
     cout << "Deleting list, then trying to print.\n";
     list.~DoublyLinkedList();
-    cout << "List forward: ";
+    cout << "List forward: " << endl;
     list.print();
 
     return 0;
