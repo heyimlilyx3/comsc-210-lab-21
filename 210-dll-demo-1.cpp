@@ -16,17 +16,24 @@ public:
         name = names[rand() % 15]; // Random name from the list
         color = colors[rand() % 15]; // Random color from the list
     }
+    Goat(int a, string n, string c) : age(a), name(n), color(c) {}
+    Goat(int a, string n) : age(a), name(n) {
+        color = colors[rand() % 15];
+    }
+    int getAge() const { return age; }
+    string getName() const { return name; }
+    string getColor() const { return color; }
 };
 
 
 class DoublyLinkedList {
 private:
     struct Node {
-        int data;
+        Goat data;
         Node* prev;
         Node* next;
-        Node(int val, Node* p = nullptr, Node* n = nullptr) {
-            data = val; 
+        Node(Goat val, Node* p = nullptr, Node* n = nullptr) {
+            data = val;
             prev = p;
             next = n;
         }
@@ -39,7 +46,7 @@ public:
     // constructor
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
-    void push_back(int value) {
+    void push_back(Goat value) {
         Node* newNode = new Node(value);
         if (!tail)  // if there's no tail, the list is empty
             head = tail = newNode;
@@ -50,7 +57,7 @@ public:
         }
     }
 
-    void push_front(int value) {
+    void push_front(Goat value) {
         Node* newNode = new Node(value);
         if (!head)  // if there's no head, the list is empty
             head = tail = newNode;
@@ -61,7 +68,7 @@ public:
         }
     }
 
-    void insert_after(int value, int position) {
+    void insert_after(Goat value, int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
             return;
@@ -92,11 +99,11 @@ public:
         temp->next = newNode;
     }
 
-    void delete_node(int value) {
+    void delete_node(Goat value) {
         if (!head) return; // Empty list
 
         Node* temp = head;
-        while (temp && temp->data != value)
+        while (temp && temp->data.getName() != value.getName())
             temp = temp->next;
 
         if (!temp) return; // Value not found
@@ -120,7 +127,7 @@ public:
         Node* current = head;
         if (!current) return;
         while (current) {
-            cout << current->data << " ";
+            cout << current->data.getName() << " ";
             current = current->next;
         }
         cout << endl;
@@ -130,7 +137,7 @@ public:
         Node* current = tail;
         if (!current) return;
         while (current) {
-            cout << current->data << " ";
+            cout << current->data.getName() << " ";
             current = current->prev;
         }
         cout << endl;
@@ -151,7 +158,7 @@ int main() {
     int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
 
     for (int i = 0; i < size; ++i)
-        list.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
+        list.push_back(Goat(rand() % 20 + 1, "Goat" + to_string(i)));
     cout << "List forward: ";
     list.print();
 
